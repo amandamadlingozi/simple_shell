@@ -70,12 +70,13 @@ int _putfd(char c, int fd)
 }
 
 /**
- * _putsfd - prints an input string.
+ * _putsfd - prints an input string to a file descriptor
  *
- * @str: The string to be printed out.
- * fd: The file description to write into.
+ * @str: the string to be printed
+ * @fd: the file descriptor to write to
  *
- * Return: The number of chars put.
+ * Return: the number of characters successfully written to
+ * the file descriptor, or -1 on error.
  */
 int _putsfd(char *str, int fd)
 {
