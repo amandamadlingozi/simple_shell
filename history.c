@@ -47,7 +47,7 @@ int write_history(info_t *info)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		_puutsfd(node->str, fd);
+		_putsfd(node->str, fd);
 		_putfd('\n', fd);
 	}
 	_putfd(BUF_FLUSH, fd);
@@ -64,9 +64,9 @@ int write_history(info_t *info)
  */
 int read_history(info_t *info)
 {
-	int h, last - 0, linecount = 0;
+	int h, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
-	struct stat st;
+	/* struct stat st; (error: unused variable ‘st’) */
 	char *buf = NULL, *filename = get_history_file(info);
 
 	if (!filename)
@@ -86,12 +86,12 @@ int read_history(info_t *info)
 	if (rdlen <= 0)
 		return (free(buf), 0);
 	close(fd);
-	for (h = 0; < fsize; h++)
-		if (buff[h] == '\n')
+	for (h = 0; h < fsize; h++)
+		if (buf[h] == '\n')
 		{
 			buf[h] = 0;
 			build_history_list(info, buf + last, linecount++);
-			list = h + 1;
+			last = h + 1;
 		}
 	if (last != h)
 		build_history_list(info, buf + last, linecount++);
@@ -142,5 +142,5 @@ int renumber_history(info_t *info)
 		node->num = h++;
 		node = node->next;
 	}
-	return (info->histocount = h);
+	return (info->histcount = h);
 }
