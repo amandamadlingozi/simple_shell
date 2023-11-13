@@ -25,7 +25,7 @@ int _myexit(info_t *info)
 		info->err_num = _erratoi(info->argv[1]);
 		return (-2);
 	}
-	info->err_num = -1
+	info->err_num = -1;
 	return (-2);
 }
 
@@ -46,7 +46,7 @@ int _mycd(info_t *info)
 		printf("Error: Unable to determine the current working directory\n");
 	if (!info->argv[1])
 	{
-		dir = _getenvi(info, "HOME=");
+		dir = _getenv(info, "HOME=");
 		if (!dir)
 			chdir_ret = /*TODO: what should this be? */
 				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
